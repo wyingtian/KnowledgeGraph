@@ -1,4 +1,4 @@
-
+compile and run
 javac cscie97/asn1/knowledge/engine/ *.java cscie97/asn1/test/*.java
 java cscie97/asn1/test/TestDriver InputTriples.nt queries.txt
 
