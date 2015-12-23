@@ -1,16 +1,16 @@
-compile and run
-javac cscie97/asn1/knowledge/engine/ *.java cscie97/asn1/test/*.java
+Usage: compile and run
+javac cscie97/asn1/knowledge/engine/*.java cscie97/asn1/test/*.java
 java cscie97/asn1/test/TestDriver InputTriples.nt queries.txt
 
+InputTriples.nt:   	knowledge source doucument
+			each line in the format of 
+			[subject] [verb] [object],
+queries.txt:		query document
+			each line can be the format of combination of "?" and subject verb object.
+			
+The output will be all the knowledge that maches the query.
 
-This knowledge graph has a little but not many variations from the design document.
-1. Case Insensitive.  
-
-	The program consider all the import entries and queries as case insensitive, that means for either the import or the queries, as long as they are the same word, they are refer to the same triple instance. There are no requirement for the case of letters for import entries or the queries.
-
-	when print the result, the from will always be the the first letter of subject and object be upper case , the rest is lower case.  The input query will be printed as is;
-
-	here is the sample run:
+For example:
 
 	input query:
 		StarBuCks Sells ?.
@@ -18,45 +18,15 @@ This knowledge graph has a little but not many variations from the design docume
 		Starbucks sells Coffee.
 		Starbucks sells Cake.
 
+Note:
+1. Case Insensitive.  
+	The program consider all the import entries and queries as case insensitive.
+	here is the sample run:
 	input query:
 		stARbuCkS sELls ?.
 	output:
 		Starbucks sells Coffee.
 		Starbucks sells Cake.
-
-2. Exception handling
-   
-   The program has the exception handling for the input and query file, such as FileNotFound exception,IOExcetion and so on.
-
-   a) If there is a minor error such as an empty line, the program will show a message saying there is an empty line and then continue executing following entries. 
-
-   here is the sample run:
-   There is an empty line in the input file!
-   
-   b) For the "." missing at the end of the file, the program will not consider it as a mistake and show error message, it will just treat it as legal input. 
-
-   c) For input that is that has fewer or more than three parts, the program will print out error message, and then continue processing the following entries. 
-   
-   here is the sample run:
-   ************************
-   Bad input :Joe plays_sport dafsdf Soccer.
-   ************************
-   Bad query :Starbucks sells ? Donuts.
-
-   d) For another sever error, the program will stop the program and exit.
-
-
-3. ??? query and query with full information
+2. ??? query and query with full information
    If the query is "? ? ?", the program will show every entry.  
-   But this is not from the querymap, they are from the triple map. In this way, querymap will not need to store the "? ? ?" to "all the entry" item.  This way the program use less memory.
-   It is the same idea with the entry with full sub pre and obj. 
-
-   sample run:
-   input query:
-   Starbucks sells Coffee.
-   output:
-   Starbucks sells Coffee.
-
-4.This program use ************************ to separate every entry input and output to make it easier to read;
-	
-
+ 
